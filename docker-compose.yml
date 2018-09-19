@@ -11,7 +11,7 @@ services:
       POSTGRES_PASSWORD: goat-trex
       POSTGRES_DB: zoo
     ports:
-      - 192.168.0.5:3432:5432
+      - 192.168.101.22:3432:5432
     volumes:
       - ./data:/var/lib/postgresql/data
 

@@ -18,8 +18,10 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -qq \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && truncate -s 0 /var/log/*log
 
+COPY v3.2.1.zip /tmp/
+COPY v1.3.3.zip /tmp/
+
 RUN cd /tmp \
-    && wget https://github.com/omniti-labs/pg_jobmon/archive/v1.3.3.zip \
     && unzip v1.3.3.zip \
     && make -C pg_jobmon-1.3.3 \
     && make NO_BGW=1 install -C pg_jobmon-1.3.3 \
@@ -27,7 +29,6 @@ RUN cd /tmp \
     && rm -rf pg_jobmon-1.3.3
 
 RUN cd /tmp \
-    && wget https://github.com/keithf4/pg_partman/archive/v3.2.1.zip \
     && unzip v3.2.1.zip \
     && make -C pg_partman-3.2.1 \
     && make install -C pg_partman-3.2.1 \
