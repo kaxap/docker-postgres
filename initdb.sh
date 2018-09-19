@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-psql -v ON_ERROR_STOP=1 --username postgres template1 <<-EOSQL
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" template1 <<-EOSQL
 CREATE EXTENSION hstore;
 CREATE EXTENSION pg_trgm;
 EOSQL

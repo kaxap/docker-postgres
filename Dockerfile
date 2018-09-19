@@ -1,4 +1,4 @@
-FROM postgres:10.1
+FROM postgres:10
 
 # Based on https://hub.docker.com/r/abakpress/postgres-db/~/dockerfile/
 
@@ -27,13 +27,14 @@ RUN cd /tmp \
     && rm -rf pg_jobmon-1.3.3
 
 RUN cd /tmp \
-    && wget https://github.com/keithf4/pg_partman/archive/v3.1.0.zip \
-    && unzip v3.1.0.zip \
-    && make -C pg_partman-3.1.0 \
-    && make install -C pg_partman-3.1.0 \
-    && rm v3.1.0.zip \
-    && rm -rf pg_partman-3.1.0
+    && wget https://github.com/keithf4/pg_partman/archive/v3.2.1.zip \
+    && unzip v3.2.1.zip \
+    && make -C pg_partman-3.2.1 \
+    && make install -C pg_partman-3.2.1 \
+    && rm v3.2.1.zip \
+    && rm -rf pg_partman-3.2.1
 
 ENV PATH /usr/bin:$PATH
 
 COPY initdb.sh /docker-entrypoint-initdb.d/
+COPY postgresql.conf ./
